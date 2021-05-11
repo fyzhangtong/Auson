@@ -5,14 +5,13 @@ target 'auson' do
 #   use_frameworks!
 
   pod 'AFNetworking', '~> 4.0'
-
   pod 'Masonry'
   pod 'MBProgressHUD'
   pod 'YYModel'
   pod 'MJRefresh' , '~> 3.4.3'
-# pod 'pop'
- pod 'YYWebImage'
- pod 'YYImage'
+  pod 'pop'
+  pod 'YYWebImage'
+  pod 'YYImage'
 
 end
 
