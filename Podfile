@@ -11,8 +11,8 @@ target 'auson' do
   pod 'YYModel'
   pod 'MJRefresh' , '~> 3.4.3'
 # pod 'pop'
-# pod 'YYWebImage'
-# pod 'YYImage'
+ pod 'YYWebImage'
+ pod 'YYImage'
 
 end
 
