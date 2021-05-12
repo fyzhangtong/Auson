@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  auson
 //
-//  Created by fdxdz on 2021/5/10.
+//  Created by zhangtong on 2021/5/10.
 //
 
 #import "AppDelegate.h"

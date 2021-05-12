@@ -1,8 +1,8 @@
 //
 //  MainTabBarController.m
-//  FanBookClub
+
 //
-//  Created by FDXDZ on 2019/3/12.
+//  Created by zhangtong on 2019/3/12.
 //  Copyright © 2019 Mac. All rights reserved.
 //
 
@@ -21,9 +21,9 @@
 
 @interface MainTabBarController ()<UITabBarControllerDelegate>
 
-@property (nonatomic, strong) BaseNavViewController *parentNavtgationController;
+@property (nonatomic, strong) BaseNavViewController *discoverNavtgationController;
 @property (nonatomic, strong) BaseNavViewController *myNavtgationController;
-@property (nonatomic, strong) BaseNavViewController *readNavtgationController;
+@property (nonatomic, strong) BaseNavViewController *homeNavtgationController;
 
 
 @end
@@ -45,38 +45,38 @@
     self = [super init];
     if (self) {
         self.delegate = self;
-        self.viewControllers = @[self.readNavtgationController,self.parentNavtgationController,self.myNavtgationController];
+        self.viewControllers = @[self.homeNavtgationController,self.discoverNavtgationController,self.myNavtgationController];
         [self customizeTabBarAppearance];
     }
     return self;
 }
 #pragma mark - getter
-- (BaseNavViewController *)readNavtgationController
+- (BaseNavViewController *)homeNavtgationController
 {
-    if (!_readNavtgationController) {
+    if (!_homeNavtgationController) {
         HomeViewController *homeVC = [[HomeViewController alloc] init];
         homeVC.hidesBottomBarWhenPushed = NO;
-        _readNavtgationController = [[BaseNavViewController alloc]
+        _homeNavtgationController = [[BaseNavViewController alloc]
                                                             initWithRootViewController:homeVC];
-        _readNavtgationController.tabBarItem.image = [[UIImage imageNamed:@"dushu_icon_index"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        _readNavtgationController.tabBarItem.title = TITLE_STRING_HOME;
-        _readNavtgationController.tabBarItem.selectedImage = [[UIImage imageNamed:@"dushu_icon_index_visit"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        _homeNavtgationController.tabBarItem.image = [[UIImage imageNamed:@"home"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        _homeNavtgationController.tabBarItem.title = TITLE_STRING_HOME;
+        _homeNavtgationController.tabBarItem.selectedImage = [[UIImage imageNamed:@"home_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
-    return _readNavtgationController;
+    return _homeNavtgationController;
 }
-- (BaseNavViewController *)parentNavtgationController
+- (BaseNavViewController *)discoverNavtgationController
 {
-    if (!_parentNavtgationController) {
+    if (!_discoverNavtgationController) {
         DiscoverViewController *plvc = [[DiscoverViewController alloc] init];
 //        ParentViewController *plvc = [[ParentViewController alloc] init];
         plvc.hidesBottomBarWhenPushed = NO;
-        _parentNavtgationController = [[BaseNavViewController alloc]
+        _discoverNavtgationController = [[BaseNavViewController alloc]
                                                              initWithRootViewController:plvc];
-        _parentNavtgationController.tabBarItem.image = [[UIImage imageNamed:@"jiazhang_icon_index"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        _parentNavtgationController.tabBarItem.title = TITLE_STRING_DISCORVER;
-        _parentNavtgationController.tabBarItem.selectedImage = [[UIImage imageNamed:@"jiazhang_icon_index_visit"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        _discoverNavtgationController.tabBarItem.image = [[UIImage imageNamed:@"discover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        _discoverNavtgationController.tabBarItem.title = TITLE_STRING_DISCORVER;
+        _discoverNavtgationController.tabBarItem.selectedImage = [[UIImage imageNamed:@"discover_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
-    return _parentNavtgationController;
+    return _discoverNavtgationController;
 }
 - (BaseNavViewController *)myNavtgationController
 {
@@ -85,9 +85,9 @@
         mVC.hidesBottomBarWhenPushed = NO;
         _myNavtgationController = [[BaseNavViewController alloc]
                                                             initWithRootViewController:mVC];
-        _myNavtgationController.tabBarItem.image = [[UIImage imageNamed:@"wode_icon_index"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        _myNavtgationController.tabBarItem.image = [[UIImage imageNamed:@"my"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         _myNavtgationController.tabBarItem.title = TITLE_STRING_MY;
-        _myNavtgationController.tabBarItem.selectedImage = [[UIImage imageNamed:@"wode_icon_index_visit"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        _myNavtgationController.tabBarItem.selectedImage = [[UIImage imageNamed:@"my_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
     return _myNavtgationController;
 }

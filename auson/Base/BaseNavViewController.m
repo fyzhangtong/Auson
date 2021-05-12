@@ -1,9 +1,7 @@
 //
 //  BaseNavViewController.m
-//  BeiBeiApp
 //
-//  Created by Mac on 16/10/17.
-//  Copyright © 2016年 wwj. All rights reserved.
+//  Created by zhangtong on 16/10/17.
 //
 
 #import "BaseNavViewController.h"

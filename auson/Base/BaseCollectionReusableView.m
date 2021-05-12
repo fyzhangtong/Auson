@@ -1,6 +1,5 @@
 //
 //  BaseCollectionReusableView.m
-//  FanBookClub
 //
 //  Created by zhangtong on 2020/5/19.
 //  Copyright © 2020 Mac. All rights reserved.

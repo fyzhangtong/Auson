@@ -44,7 +44,7 @@
 /// ------------------------------------------------颜色------------------------------------------------
 #define GTColor(HexStr)  [UIColor colorWithHexString:HexStr]
 /// 全局色调
-#define GlobalColor [UIColor colorWithHexString:@"#49bcec"]
+#define GlobalColor [UIColor colorWithHexString:@"#ffac3c"]
 /// 灰色阴影
 #define ShadowBackColor [UIColor colorWithHex:0xcccccc]
 /// 请求图片时的占位颜色

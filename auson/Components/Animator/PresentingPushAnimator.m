@@ -1,6 +1,6 @@
 //
 //  PresentingPushAnimator.m
-//  FanBookClub
+
 //
 //  Created by zhangtong on 2020/10/19.
 //  Copyright © 2020 Mac. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  UIView+ZTCAAnimation.m
-//  FanBookClub
+
 //
 //  Created by zhangtong on 2020/7/20.
 //  Copyright © 2020 Mac. All rights reserved.
