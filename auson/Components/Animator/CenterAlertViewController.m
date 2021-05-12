@@ -8,7 +8,6 @@
 
 #import "CenterAlertViewController.h"
 #import <pop/POP.h>
-#import "AppDelegate.h"
 
 @implementation CenterAlertDismissAnimator
 
