@@ -33,6 +33,7 @@
 		295D2F30264A7CBF002FB344 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 295D2F2F264A7CBF002FB344 /* DiscoverViewController.m */; };
 		295D2F33264A7D9A002FB344 /* UIColor+RP.m in Sources */ = {isa = PBXBuildFile; fileRef = 295D2F31264A7D99002FB344 /* UIColor+RP.m */; };
 		295D2F36264A7DFB002FB344 /* UIImage+ImageWithColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 295D2F34264A7DFB002FB344 /* UIImage+ImageWithColor.m */; };
+		29ECB481264B95530053DFF9 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ECB480264B95530053DFF9 /* LoginViewController.m */; };
 		4D9EF556F42D9517BADB3526 /* libPods-auson.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8466C74F84F2BC38E985649 /* libPods-auson.a */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +92,8 @@
 		295D2F32264A7D99002FB344 /* UIColor+RP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+RP.h"; sourceTree = "<group>"; };
 		295D2F34264A7DFB002FB344 /* UIImage+ImageWithColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageWithColor.m"; sourceTree = "<group>"; };
 		295D2F35264A7DFB002FB344 /* UIImage+ImageWithColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageWithColor.h"; sourceTree = "<group>"; };
+		29ECB47F264B95530053DFF9 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		29ECB480264B95530053DFF9 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		862031BAB2F728EF6AF54099 /* Pods-auson.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-auson.debug.xcconfig"; path = "Target Support Files/Pods-auson/Pods-auson.debug.xcconfig"; sourceTree = "<group>"; };
 		C8466C74F84F2BC38E985649 /* libPods-auson.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-auson.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEE3E6F16D1FFE40D5C43273 /* Pods-auson.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-auson.release.xcconfig"; path = "Target Support Files/Pods-auson/Pods-auson.release.xcconfig"; sourceTree = "<group>"; };
@@ -201,6 +204,7 @@
 		295D2F1A264A78BB002FB344 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				29ECB47D264B953A0053DFF9 /* login */,
 				295D2F2C264A7CA0002FB344 /* Discover */,
 				295D2F1C264A78E5002FB344 /* My */,
 				295D2F1B264A78DC002FB344 /* Home */,
@@ -270,6 +274,23 @@
 			children = (
 				295D2F2E264A7CBF002FB344 /* DiscoverViewController.h */,
 				295D2F2F264A7CBF002FB344 /* DiscoverViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		29ECB47D264B953A0053DFF9 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				29ECB47E264B95430053DFF9 /* Controller */,
+			);
+			path = login;
+			sourceTree = "<group>";
+		};
+		29ECB47E264B95430053DFF9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				29ECB47F264B95530053DFF9 /* LoginViewController.h */,
+				29ECB480264B95530053DFF9 /* LoginViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -407,6 +428,7 @@
 				295D2F02264A7795002FB344 /* ToPresentingViewController.m in Sources */,
 				295D2EEB264A66C2002FB344 /* ZTNetworking.m in Sources */,
 				295D2F30264A7CBF002FB344 /* DiscoverViewController.m in Sources */,
+				29ECB481264B95530053DFF9 /* LoginViewController.m in Sources */,
 				295D2F04264A7795002FB344 /* BottomAlertViewController.m in Sources */,
 				295D2F2B264A7C38002FB344 /* UIView+ZTCAAnimation.m in Sources */,
 				295D2F25264A7BC7002FB344 /* HomeViewController.m in Sources */,
