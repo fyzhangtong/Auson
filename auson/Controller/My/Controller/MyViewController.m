@@ -7,6 +7,7 @@
 
 #import "MyViewController.h"
 #import "LoginViewController.h"
+#import "ZTWebViewController.h"
 
 @interface MyViewController ()
 
@@ -20,6 +21,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self makeView];
+    
+//    [ZTNetworking getWithUrl:@"https://baidu.com" params:nil success:^(ZTNetWorkingResponse * _Nonnull response) {
+//        NSLog(@"-----------%@",response);
+//        } fail:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//            NSLog(@"----------%@",error);
+//        }];
 }
 
 - (void)makeView

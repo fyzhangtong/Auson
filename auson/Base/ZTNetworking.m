@@ -107,8 +107,9 @@
     return task;
 }
 #pragma mark - 开始监听网络连接
-+(AFHTTPSessionManager *)getAFManagerWithParams:(NSDictionary *)params type:(NSInteger)type jsonRequest:(BOOL)jsonRequest{
-
++(AFHTTPSessionManager *)getAFManagerWithParams:(NSDictionary *)params type:(NSInteger)type jsonRequest:(BOOL)jsonRequest
+{
+ 
     AFHTTPSessionManager *manager = manager = [AFHTTPSessionManager manager];
     //设置https连接暂无证书校验模式：
     manager.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
@@ -117,6 +118,8 @@
     
     if (jsonRequest) {
         manager.requestSerializer = [AFJSONRequestSerializer serializer];//设置请求数据为json
+    }else{
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     }
   
     manager.responseSerializer = [AFJSONResponseSerializer serializer];//设置返回数据为json
@@ -131,7 +134,7 @@
         [dic setDictionary:params];
     }
     NSString *token = [ZTUserTool userToken];
-    if (!token) {
+    if (token) {
         [dic setObject:token forKey:@"token"];
         [manager.requestSerializer setValue:token forHTTPHeaderField:@"token"];
     }

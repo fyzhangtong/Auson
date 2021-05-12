@@ -229,7 +229,7 @@
     if ([self.navigationView.backgroundColor isEqual:[UIColor whiteColor]]) {
         [self setLeftButtonImage:[UIImage imageNamed:@"back_black"]];
     }else{
-        [self setLeftButtonImage:[UIImage imageNamed:@"back_wite"]];
+        [self setLeftButtonImage:[UIImage imageNamed:@"back_white"]];
     }
     
 }
@@ -237,7 +237,7 @@
 - (void)addRightShareButton
 {
     if ([self.navigationView.backgroundColor isEqual:[UIColor whiteColor]]) {
-        [self setRightButtonImage:[UIImage imageNamed:@"share_3.1"]];
+        [self setRightButtonImage:[UIImage imageNamed:@"navigation_bar_black_share"]];
     }else{
         [self setRightButtonImage:[UIImage imageNamed:@"navigation_bar_white_share"]];
     }
