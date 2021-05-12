@@ -1,6 +1,6 @@
 //
 //  MBProgressHUD+GTStyle.m
-//  GeeTimerApp
+//  zhangtong
 //
 //  Created by Mac on 16/10/17.
 //  Copyright © 2016年 zhangtong. All rights reserved.
