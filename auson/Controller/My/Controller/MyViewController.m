@@ -58,7 +58,8 @@
 #pragma mark - action
 - (void)loginBtnClick:(UIButton *)sender
 {
-    [LoginViewController loginWithComplete:NULL];
+//    [LoginViewController loginWithComplete:NULL];
+    [ZTWebViewController openUrl:@"https://baidu.com" controller:self];
 }
 
 @end

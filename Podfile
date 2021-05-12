@@ -14,6 +14,7 @@ target 'auson' do
   pod 'pop'
   pod 'YYWebImage'
   pod 'YYImage'
+  pod 'WebViewJavascriptBridge', '~> 6.0'
 
 end
 

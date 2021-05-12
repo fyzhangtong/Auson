@@ -39,9 +39,6 @@
 		29ECB491264B9CF40053DFF9 /* HtmlStringWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ECB488264B9CF40053DFF9 /* HtmlStringWebView.m */; };
 		29ECB492264B9CF40053DFF9 /* ZTWebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ECB48B264B9CF40053DFF9 /* ZTWebViewJavascriptBridge.m */; };
 		29ECB493264B9CF40053DFF9 /* ZTWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ECB48E264B9CF40053DFF9 /* ZTWebViewController.m */; };
-		29ECB49B264B9E7B0053DFF9 /* WebViewJavascriptBridgeBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ECB495264B9E7B0053DFF9 /* WebViewJavascriptBridgeBase.m */; };
-		29ECB49C264B9E7B0053DFF9 /* WKWebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ECB498264B9E7B0053DFF9 /* WKWebViewJavascriptBridge.m */; };
-		29ECB49D264B9E7B0053DFF9 /* WebViewJavascriptBridge_JS.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ECB499264B9E7B0053DFF9 /* WebViewJavascriptBridge_JS.m */; };
 		4D9EF556F42D9517BADB3526 /* libPods-auson.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8466C74F84F2BC38E985649 /* libPods-auson.a */; };
 /* End PBXBuildFile section */
 
@@ -113,12 +110,6 @@
 		29ECB48C264B9CF40053DFF9 /* ZTWebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTWebViewJavascriptBridge.h; sourceTree = "<group>"; };
 		29ECB48D264B9CF40053DFF9 /* ZTWebViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTWebViewDelegate.h; sourceTree = "<group>"; };
 		29ECB48E264B9CF40053DFF9 /* ZTWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTWebViewController.m; sourceTree = "<group>"; };
-		29ECB495264B9E7B0053DFF9 /* WebViewJavascriptBridgeBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridgeBase.m; sourceTree = "<group>"; };
-		29ECB496264B9E7B0053DFF9 /* WebViewJavascriptBridge_JS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge_JS.h; sourceTree = "<group>"; };
-		29ECB497264B9E7B0053DFF9 /* WKWebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWebViewJavascriptBridge.h; sourceTree = "<group>"; };
-		29ECB498264B9E7B0053DFF9 /* WKWebViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKWebViewJavascriptBridge.m; sourceTree = "<group>"; };
-		29ECB499264B9E7B0053DFF9 /* WebViewJavascriptBridge_JS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge_JS.m; sourceTree = "<group>"; };
-		29ECB49A264B9E7B0053DFF9 /* WebViewJavascriptBridgeBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridgeBase.h; sourceTree = "<group>"; };
 		862031BAB2F728EF6AF54099 /* Pods-auson.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-auson.debug.xcconfig"; path = "Target Support Files/Pods-auson/Pods-auson.debug.xcconfig"; sourceTree = "<group>"; };
 		C8466C74F84F2BC38E985649 /* libPods-auson.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-auson.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEE3E6F16D1FFE40D5C43273 /* Pods-auson.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-auson.release.xcconfig"; path = "Target Support Files/Pods-auson/Pods-auson.release.xcconfig"; sourceTree = "<group>"; };
@@ -205,7 +196,6 @@
 		295D2EF5264A7733002FB344 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				29ECB494264B9E690053DFF9 /* WebViewJavascriptBridge */,
 				29ECB482264B9CE00053DFF9 /* ZTWebView */,
 				295D2F1F264A7A7A002FB344 /* Category */,
 				295D2EF8264A7787002FB344 /* Animator */,
@@ -338,19 +328,6 @@
 				29ECB487264B9CF40053DFF9 /* ZTWKWebView.m */,
 			);
 			path = ZTWebView;
-			sourceTree = "<group>";
-		};
-		29ECB494264B9E690053DFF9 /* WebViewJavascriptBridge */ = {
-			isa = PBXGroup;
-			children = (
-				29ECB496264B9E7B0053DFF9 /* WebViewJavascriptBridge_JS.h */,
-				29ECB499264B9E7B0053DFF9 /* WebViewJavascriptBridge_JS.m */,
-				29ECB49A264B9E7B0053DFF9 /* WebViewJavascriptBridgeBase.h */,
-				29ECB495264B9E7B0053DFF9 /* WebViewJavascriptBridgeBase.m */,
-				29ECB497264B9E7B0053DFF9 /* WKWebViewJavascriptBridge.h */,
-				29ECB498264B9E7B0053DFF9 /* WKWebViewJavascriptBridge.m */,
-			);
-			path = WebViewJavascriptBridge;
 			sourceTree = "<group>";
 		};
 		D610A10D083BB79D82687FE7 /* Pods */ = {
@@ -501,9 +478,7 @@
 				295D2F15264A787A002FB344 /* BaseViewController.m in Sources */,
 				29ECB491264B9CF40053DFF9 /* HtmlStringWebView.m in Sources */,
 				292E1E0B2648D3380005C366 /* SceneDelegate.m in Sources */,
-				29ECB49B264B9E7B0053DFF9 /* WebViewJavascriptBridgeBase.m in Sources */,
 				295D2F01264A7795002FB344 /* PresentingPushAnimator.m in Sources */,
-				29ECB49C264B9E7B0053DFF9 /* WKWebViewJavascriptBridge.m in Sources */,
 				295D2EEE264A6911002FB344 /* ZTUtil.m in Sources */,
 				295D2F19264A7889002FB344 /* MainTabBarController.m in Sources */,
 				295D2F0C264A7869002FB344 /* BaseCollectionViewCell.m in Sources */,
@@ -514,7 +489,6 @@
 				295D2EF1264A69C7002FB344 /* ZTUserTool.m in Sources */,
 				295D2F0B264A7868002FB344 /* BaseNavViewController.m in Sources */,
 				295D2F03264A7795002FB344 /* CenterAlertViewController.m in Sources */,
-				29ECB49D264B9E7B0053DFF9 /* WebViewJavascriptBridge_JS.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
