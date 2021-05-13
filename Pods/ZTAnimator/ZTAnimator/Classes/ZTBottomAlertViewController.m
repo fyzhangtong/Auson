@@ -1,19 +1,19 @@
 //
-//  ToPresentingViewController.m
+//  BottomAlertViewController.m
 
 //
-//  Created by zhangtong on 2019/11/29.
-//  Copyright © 2019 Mac. All rights reserved.
+//  Created by zhangtong on 2020/5/14.
+//  Copyright © 2020 Mac. All rights reserved.
 //
 
-#import "ToPresentingViewController.h"
+#import "ZTBottomAlertViewController.h"
 #import <pop/POP.h>
 
-@implementation DismissingAnimator
+@implementation ZTBottomAlertDismissAnimator
 
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext
 {
-    return 0.5f;
+    return 0.2f;
 }
 
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext
@@ -34,22 +34,26 @@
     POPBasicAnimation *opacityAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerOpacity];
     opacityAnimation.toValue = @(0.0);
 
+    CGFloat fromHeight = fromVC.view.frame.size.height;
+    CGFloat contextHeight = transitionContext.containerView.bounds.size.height;
     POPBasicAnimation *offscreenAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerPositionY];
-    offscreenAnimation.toValue = @(-fromVC.view.layer.position.y);
+    offscreenAnimation.toValue = @(contextHeight+fromHeight/2);
     [offscreenAnimation setCompletionBlock:^(POPAnimation *anim, BOOL finished) {
         [transitionContext completeTransition:YES];
     }];
     [fromVC.view.layer pop_addAnimation:offscreenAnimation forKey:@"offscreenAnimation"];
     [dimmingView.layer pop_addAnimation:opacityAnimation forKey:@"opacityAnimation"];
 }
-
 @end
 
-@implementation PresentingAnimator
+@interface ZTBottomAlertPresentingAnimator ()
+@property (nonatomic, assign) BOOL addGreyMask;
+@end
+@implementation ZTBottomAlertPresentingAnimator
 
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext
 {
-    return 1.0f;
+    return 0.2f;
 }
 
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext
@@ -59,12 +63,13 @@
     fromView.userInteractionEnabled = NO;
 
     ///添加蒙层
-    UIView *dimmingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, GTSCREENW, GTSCREENH)];
-    dimmingView.backgroundColor = [UIColor blackColor];
+    UIView *dimmingView = [[UIView alloc] initWithFrame:fromView.bounds];
+    
+    dimmingView.backgroundColor = self.addGreyMask ? [UIColor blackColor] : [UIColor clearColor];
     dimmingView.layer.opacity = 0.0;
     dimmingView.userInteractionEnabled = YES;
 
-    ToPresentingViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     ///设置toViewController的View的frame
     if ([toViewController respondsToSelector:@selector(setViewFrame)]) {
         [toViewController performSelector:@selector(setViewFrame)];
@@ -74,8 +79,11 @@
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:toViewController action:@selector(dismissViewController)];
         [dimmingView addGestureRecognizer:tap];
     }
+    CGFloat toHeight = toViewController.view.frame.size.height;
+    CGFloat toWidth = toViewController.view.frame.size.width;
+    CGFloat contextHeight = transitionContext.containerView.bounds.size.height;
     ///设置toViewController的center
-    toViewController.view.center = CGPointMake(transitionContext.containerView.center.x, -transitionContext.containerView.center.y);
+    toViewController.view.center = CGPointMake(toWidth/2, contextHeight + toHeight/2);
 
     ///添加蒙层
     [transitionContext.containerView addSubview:dimmingView];
@@ -83,15 +91,14 @@
     [transitionContext.containerView addSubview:toViewController.view];
 
     POPSpringAnimation *positionAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
-    positionAnimation.toValue = @(transitionContext.containerView.center.y);
-    positionAnimation.springBounciness = 10;
+    positionAnimation.toValue = @(contextHeight-toHeight/2);
+    positionAnimation.springBounciness = 0;
     [positionAnimation setCompletionBlock:^(POPAnimation *anim, BOOL finished) {
         [transitionContext completeTransition:YES];
     }];
-
     POPSpringAnimation *scaleAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
-    scaleAnimation.springBounciness = 20;
-    scaleAnimation.fromValue = [NSValue valueWithCGPoint:CGPointMake(1.2, 1.4)];
+    scaleAnimation.springBounciness = 0;
+    scaleAnimation.fromValue = [NSValue valueWithCGPoint:CGPointMake(1.0, 1.2)];
 
     POPBasicAnimation *opacityAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerOpacity];
     opacityAnimation.toValue = @(0.5);
@@ -103,13 +110,13 @@
 
 @end
 
-@interface ToPresentingViewController ()<UIViewControllerTransitioningDelegate>
+@interface ZTBottomAlertViewController ()<UIViewControllerTransitioningDelegate>
 
 @property (nonatomic, assign) BOOL appDelegateAllowRotation;
 
 @end
 
-@implementation ToPresentingViewController
+@implementation ZTBottomAlertViewController
 
 - (instancetype)init
 {
@@ -120,23 +127,28 @@
     }
     return self;
 }
-
 #pragma mark - UIViewControllerTransitioningDelegate
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
                                                                   presentingController:(UIViewController *)presenting
                                                                       sourceController:(UIViewController *)source
 {
-    return [PresentingAnimator new];
+    ZTBottomAlertPresentingAnimator *animator = [ZTBottomAlertPresentingAnimator new];
+    animator.addGreyMask = [self addGreyMask];
+    return animator;
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
 {
-    return [DismissingAnimator new];
+    return [ZTBottomAlertDismissAnimator new];
 }
-
+/// 是否有黑色背景
+- (BOOL)addGreyMask
+{
+    return YES;
+}
 - (void)setViewFrame
 {
-    self.view.frame = CGRectMake(0, 0, GTSCREENW, GTSCREENH);
+    self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
 }
 - (void)dismissViewController
 {}

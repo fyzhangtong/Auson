@@ -10,15 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BottomAlertDismissAnimator : NSObject<UIViewControllerAnimatedTransitioning>
+@interface ZTBottomAlertDismissAnimator : NSObject<UIViewControllerAnimatedTransitioning>
 
 @end
 
-@interface BottomAlertPresentingAnimator : NSObject <UIViewControllerAnimatedTransitioning>
+@interface ZTBottomAlertPresentingAnimator : NSObject <UIViewControllerAnimatedTransitioning>
 
 @end
 
-@interface BottomAlertViewController : UIViewController
+@interface ZTBottomAlertViewController : UIViewController
 
 /// 是否有黑色背景，default yes
 - (BOOL)addGreyMask;

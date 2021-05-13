@@ -6,10 +6,10 @@
 //  Copyright © 2020 Mac. All rights reserved.
 //
 
-#import "CenterAlertViewController.h"
+#import "ZTCenterAlertViewController.h"
 #import <pop/POP.h>
 
-@implementation CenterAlertDismissAnimator
+@implementation ZTCenterAlertDismissAnimator
 
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext
 {
@@ -36,7 +36,7 @@
 }
 @end
 
-@implementation CenterAlertPresentingAnimator
+@implementation ZTCenterAlertPresentingAnimator
 
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext
 {
@@ -87,13 +87,13 @@
 
 @end
 
-@interface CenterAlertViewController ()<UIViewControllerTransitioningDelegate>
+@interface ZTCenterAlertViewController ()<UIViewControllerTransitioningDelegate>
 
 @property (nonatomic, assign) BOOL appDelegateAllowRotation;
 
 @end
 
-@implementation CenterAlertViewController
+@implementation ZTCenterAlertViewController
 
 - (instancetype)init
 {
@@ -109,17 +109,17 @@
                                                                   presentingController:(UIViewController *)presenting
                                                                       sourceController:(UIViewController *)source
 {
-    return [CenterAlertPresentingAnimator new];
+    return [ZTCenterAlertPresentingAnimator new];
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
 {
-    return [CenterAlertDismissAnimator new];
+    return [ZTCenterAlertDismissAnimator new];
 }
 
 - (void)setViewFrame
 {
-    self.view.frame = CGRectMake(0, 0, GTSCREENW, GTSCREENH);
+    self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
 }
 - (void)dismissViewController
 {}

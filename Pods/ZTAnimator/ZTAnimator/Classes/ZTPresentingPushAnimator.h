@@ -10,11 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DismissingPushAnimator : NSObject <UIViewControllerAnimatedTransitioning>
+@interface ZTDismissingPushAnimator : NSObject <UIViewControllerAnimatedTransitioning>
 
 @end
 
-@interface PresentingPushAnimator : NSObject <UIViewControllerAnimatedTransitioning>
+@interface ZTPresentingPushAnimator : NSObject <UIViewControllerAnimatedTransitioning>
 
 @end
 

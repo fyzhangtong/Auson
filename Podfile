@@ -16,6 +16,7 @@ target 'auson' do
   pod 'YYImage'
   pod 'WebViewJavascriptBridge', '~> 6.0'
   pod 'YBAttributeTextTapAction'
+  pod 'ZTAnimator'
 
 end
 

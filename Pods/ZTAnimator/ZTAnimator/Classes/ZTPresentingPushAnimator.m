@@ -6,9 +6,9 @@
 //  Copyright © 2020 Mac. All rights reserved.
 //
 
-#import "PresentingPushAnimator.h"
+#import "ZTPresentingPushAnimator.h"
 
-@implementation DismissingPushAnimator
+@implementation ZTDismissingPushAnimator
 
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext
 {
@@ -42,7 +42,7 @@
 
 @end
 
-@implementation PresentingPushAnimator
+@implementation ZTPresentingPushAnimator
 
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext
 {

@@ -10,15 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DismissingAnimator : NSObject <UIViewControllerAnimatedTransitioning>
+@interface ZTDismissingAnimator : NSObject <UIViewControllerAnimatedTransitioning>
 
 @end
 
-@interface PresentingAnimator : NSObject <UIViewControllerAnimatedTransitioning>
+@interface ZTPresentingAnimator : NSObject <UIViewControllerAnimatedTransitioning>
 
 @end
 
-@interface ToPresentingViewController : UIViewController
+@interface ZTToPresentingViewController : UIViewController
 
 /// 显示的大小
 - (void)setViewFrame;

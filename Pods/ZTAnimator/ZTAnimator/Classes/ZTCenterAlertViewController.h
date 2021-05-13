@@ -10,15 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CenterAlertDismissAnimator : NSObject<UIViewControllerAnimatedTransitioning>
+@interface ZTCenterAlertDismissAnimator : NSObject<UIViewControllerAnimatedTransitioning>
 
 @end
 
-@interface CenterAlertPresentingAnimator : NSObject <UIViewControllerAnimatedTransitioning>
+@interface ZTCenterAlertPresentingAnimator : NSObject <UIViewControllerAnimatedTransitioning>
 
 @end
 
-@interface CenterAlertViewController : UIViewController
+@interface ZTCenterAlertViewController : UIViewController
 
 /// 显示的大小
 - (void)setViewFrame;
