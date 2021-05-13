@@ -33,6 +33,8 @@
 #define GTNAVIGATIONBARHEIGHT (SafeIphoneXStatusHeader + 44)
 /// tabbar高度
 #define GTTABBARHEIGHT (SafeIphoneXStatusHeader > 20 ? 83 : 49)
+/// 全面屏bottom
+#define safeIphoneXFooter (SafeIphoneXStatusHeader > 20  ? 25 : 0)
 
 /// ------------------------------------------------字体名------------------------------------------------
 #define FD_FONT_BOLD @"AvenirNext-Bold"
