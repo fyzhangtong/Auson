@@ -55,6 +55,15 @@
 #define GTColor(HexStr)  [UIColor colorWithHexString:HexStr]
 /// 全局色调
 #define GlobalColor [UIColor colorNamed:@"GlobalColor"]
+
+
+#define TextColor333 [UIColor colorNamed:@"TextColor333"]
+#define TextColor666 [UIColor colorNamed:@"TextColor666"]
+#define TextColor999 [UIColor colorNamed:@"TextColor999"]
+
+#define DisableColor [UIColor colorNamed:@"DisableColor"]
+
+
 /// 请求图片时的占位颜色
 #define PLACEHODLER_COLOR [UIColor colorNamed:@"PlachhodlerColor"]
 
