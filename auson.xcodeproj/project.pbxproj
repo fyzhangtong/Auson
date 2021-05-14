@@ -12,6 +12,7 @@
 		292E1E132648D3390005C366 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 292E1E122648D3390005C366 /* Assets.xcassets */; };
 		292E1E162648D3390005C366 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 292E1E142648D3390005C366 /* LaunchScreen.storyboard */; };
 		292E1E192648D3390005C366 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 292E1E182648D3390005C366 /* main.m */; };
+		2946D9C9264E613800E0279E /* MKCoutDownTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2946D9C7264E613800E0279E /* MKCoutDownTimer.m */; };
 		295D2EEB264A66C2002FB344 /* ZTNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 295D2EEA264A66C2002FB344 /* ZTNetworking.m */; };
 		295D2EEE264A6911002FB344 /* ZTUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 295D2EED264A6911002FB344 /* ZTUtil.m */; };
 		295D2EF1264A69C7002FB344 /* ZTUserTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 295D2EF0264A69C7002FB344 /* ZTUserTool.m */; };
@@ -50,6 +51,8 @@
 		292E1E152648D3390005C366 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		292E1E172648D3390005C366 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		292E1E182648D3390005C366 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2946D9C7264E613800E0279E /* MKCoutDownTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCoutDownTimer.m; sourceTree = "<group>"; };
+		2946D9C8264E613800E0279E /* MKCoutDownTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCoutDownTimer.h; sourceTree = "<group>"; };
 		2956F552264A5DA50045543A /* auson-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "auson-Prefix.pch"; sourceTree = "<group>"; };
 		295D2EE9264A66C2002FB344 /* ZTNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZTNetworking.h; sourceTree = "<group>"; };
 		295D2EEA264A66C2002FB344 /* ZTNetworking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZTNetworking.m; sourceTree = "<group>"; };
@@ -154,6 +157,15 @@
 			path = auson;
 			sourceTree = "<group>";
 		};
+		2946D9C6264E613100E0279E /* MKCoutDownTimer */ = {
+			isa = PBXGroup;
+			children = (
+				2946D9C8264E613800E0279E /* MKCoutDownTimer.h */,
+				2946D9C7264E613800E0279E /* MKCoutDownTimer.m */,
+			);
+			path = MKCoutDownTimer;
+			sourceTree = "<group>";
+		};
 		295D2EE7264A661B002FB344 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +196,7 @@
 		295D2EF5264A7733002FB344 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				2946D9C6264E613100E0279E /* MKCoutDownTimer */,
 				29ECB482264B9CE00053DFF9 /* ZTWebView */,
 				295D2F1F264A7A7A002FB344 /* Category */,
 			);
@@ -455,6 +468,7 @@
 				295D2EF4264A74F0002FB344 /* MBProgressHUD+GTStyle.m in Sources */,
 				295D2F14264A787A002FB344 /* BaseTableViewCell.m in Sources */,
 				295D2F22264A7A8E002FB344 /* UIButton+EdgeInsets.m in Sources */,
+				2946D9C9264E613800E0279E /* MKCoutDownTimer.m in Sources */,
 				295D2EF1264A69C7002FB344 /* ZTUserTool.m in Sources */,
 				295D2F0B264A7868002FB344 /* BaseNavViewController.m in Sources */,
 			);

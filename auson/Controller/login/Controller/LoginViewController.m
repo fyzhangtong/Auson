@@ -10,9 +10,15 @@
 #import "UILabel+YBAttributeTextTapAction.h"
 #import "ZTWebViewController.h"
 #import "UIImage+ImageWithColor.h"
+#import "MKCoutDownTimer.h"
 
 static NSString *agreementString = @" 用户协议 ";
 static NSString *privacyPolicyString = @" 隐私政策 ";
+
+typedef NS_ENUM(NSInteger) {
+    LoginTypeSMSCode = 0,
+    LoginTypePassword = 1
+}LoginType;
 
 @interface LoginViewController ()<YBAttributeTapActionDelegate,UITextFieldDelegate>
 
@@ -21,10 +27,13 @@ static NSString *privacyPolicyString = @" 隐私政策 ";
 @property (nonatomic, strong)     UILabel *headerTitleLabel;
 @property (nonatomic, strong)     UITextField *phoneTextField;
 @property (nonatomic, strong)     UITextField *smsCodeTextField;
+@property (nonatomic, strong)     UITextField *passwordTextField;
 @property (nonatomic, strong)     UIButton *modelChangeBtn;
 @property (nonatomic, strong)     UIButton *confromBtn;
 @property (nonatomic, strong)     UIButton *sendSMSCodeBtn;
 @property (nonatomic, strong)     UIStackView *stackView;
+
+@property (nonatomic, assign)     LoginType loginType;
 
 @end
 
@@ -56,6 +65,13 @@ static NSString *privacyPolicyString = @" 隐私政策 ";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self makeView];
+    
+    self.loginType = LoginTypeSMSCode;
+}
+
+- (void)makeView
+{
+    [self setRightButtonTitle:@"随便看看" titleColor:GlobalColor];
     [self.view addSubview:self.headerTitleLabel];
     [self.view addSubview:self.stackView];
     [self.view addSubview:self.modelChangeBtn];
@@ -91,16 +107,13 @@ static NSString *privacyPolicyString = @" 隐私政策 ";
     [_phoneTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(40);
     }];
-
+    
     [_smsCodeTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(self.phoneTextField);
     }];
-    
-}
-
-- (void)makeView
-{
-    [self setRightButtonTitle:@"随便看看" titleColor:GlobalColor];
+    [_passwordTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(self.phoneTextField);
+    }];
 }
 #pragma mark - getter
 - (UILabel *)headerTitleLabel
@@ -117,8 +130,8 @@ static NSString *privacyPolicyString = @" 隐私政策 ";
 - (UIStackView *)stackView
 {
     if (!_stackView) {
-        _stackView = [[UIStackView alloc] initWithArrangedSubviews:@[self.phoneTextField,self.smsCodeTextField]];
-//        _smsCodeTextField.hidden = YES;
+        _stackView = [[UIStackView alloc] initWithArrangedSubviews:@[self.phoneTextField,self.smsCodeTextField,self.passwordTextField]];
+        
         _stackView.spacing = 5;
         _stackView.axis = UILayoutConstraintAxisVertical;
     }
@@ -135,15 +148,18 @@ static NSString *privacyPolicyString = @" 隐私政策 ";
         textfield.delegate = self;
         textfield.keyboardType = UIKeyboardTypePhonePad;
         textfield.clearButtonMode = UITextFieldViewModeWhileEditing;
+        [textfield addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         
         UILabel *label = [UILabel new];
         label.font = [UIFont fontWithName:FDFONT_PINGFANGSC_REGULAR size:17];
         label.textColor = TextColor333;
         label.text = @"手机号";
-        label.frame = CGRectMake(0, 0, 80, 50);
         
         textfield.leftView = label;
         textfield.leftViewMode = UITextFieldViewModeAlways;
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(80, 50));
+        }];
         
         UIView *line = [UIView new];
         line.backgroundColor = GTColor(@"#f6f6f6");
@@ -152,11 +168,44 @@ static NSString *privacyPolicyString = @" 隐私政策 ";
             make.left.bottom.right.mas_equalTo(0);
             make.height.mas_equalTo(1);
         }];
-//        textfield.backgroundColor = GTColor(@"#f6f6f6");
-        
         _phoneTextField = textfield;
     }
     return _phoneTextField;
+}
+- (UITextField *)passwordTextField
+{
+    if (!_passwordTextField) {
+        
+        UITextField *textfield = [UITextField new];
+        textfield.placeholder = @"请输入密码";
+        textfield.font = [UIFont fontWithName:FDFONT_PINGFANGSC_REGULAR size:17];
+        textfield.textColor = TextColor333;
+        textfield.delegate = self;
+        textfield.keyboardType = UIKeyboardTypePhonePad;
+        textfield.clearButtonMode = UITextFieldViewModeWhileEditing;
+        [textfield addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+        
+        UILabel *label = [UILabel new];
+        label.font = [UIFont fontWithName:FDFONT_PINGFANGSC_REGULAR size:17];
+        label.textColor = TextColor333;
+        label.text = @"密码";
+        
+        textfield.leftView = label;
+        textfield.leftViewMode = UITextFieldViewModeAlways;
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(80, 50));
+        }];
+        
+        UIView *line = [UIView new];
+        line.backgroundColor = GTColor(@"#f6f6f6");
+        [textfield addSubview:line];
+        [line mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.bottom.right.mas_equalTo(0);
+            make.height.mas_equalTo(1);
+        }];
+        _passwordTextField = textfield;
+    }
+    return _passwordTextField;
 }
 
 - (UITextField *)smsCodeTextField
@@ -169,18 +218,25 @@ static NSString *privacyPolicyString = @" 隐私政策 ";
         textfield.textColor = TextColor333;
         textfield.delegate = self;
         textfield.keyboardType = UIKeyboardTypePhonePad;
+        [textfield addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         
         UILabel *label = [UILabel new];
         label.font = [UIFont fontWithName:FDFONT_PINGFANGSC_REGULAR size:17];
         label.textColor = TextColor333;
         label.text = @"验证码";
-        label.frame = CGRectMake(0, 0, 80, 50);
+        
         
         textfield.leftView = label;
         textfield.leftViewMode = UITextFieldViewModeAlways;
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(80, 50));
+        }];
         
         textfield.rightView = self.sendSMSCodeBtn;
         textfield.rightViewMode = UITextFieldViewModeAlways;
+        [_sendSMSCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(24);
+        }];
         
         UIView *line = [UIView new];
         line.backgroundColor = GTColor(@"#f6f6f6");
@@ -189,7 +245,7 @@ static NSString *privacyPolicyString = @" 隐私政策 ";
             make.left.bottom.right.mas_equalTo(0);
             make.height.mas_equalTo(1);
         }];
-//        textfield.backgroundColor = GTColor(@"#f6f6f6");
+        //        textfield.backgroundColor = GTColor(@"#f6f6f6");
         
         _smsCodeTextField = textfield;
     }
@@ -200,9 +256,9 @@ static NSString *privacyPolicyString = @" 隐私政策 ";
     if (!_sendSMSCodeBtn) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        [btn setTitle:@"获取验证码" forState:UIControlStateNormal];
-        btn.frame = CGRectMake(0, 0, 80, 24);
+        [btn setTitle:@"  获取验证码  " forState:UIControlStateNormal];
         [btn setTitleColor:TextColor333 forState:UIControlStateNormal];
+        [btn setTitleColor:TextColor999 forState:UIControlStateDisabled];
         btn.titleLabel.font = [UIFont fontWithName:FDFONT_PINGFANGSC_REGULAR size:12];
         [btn addTarget:self action:@selector(sendSMSCodeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         btn.layer.cornerRadius = 4;
@@ -216,7 +272,7 @@ static NSString *privacyPolicyString = @" 隐私政策 ";
 {
     if (!_modelChangeBtn) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setTitle:@"用密码登录" forState:UIControlStateNormal];
+        [btn setTitle:@"用验证码登录" forState:UIControlStateNormal];
         [btn setTitleColor:GTColor(@"#0e4b87") forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont fontWithName:FDFONT_HYT_REGULAR size:14];
         [btn addTarget:self action:@selector(modelChangeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -250,7 +306,7 @@ static NSString *privacyPolicyString = @" 隐私政策 ";
     if (!_agreementLabel) {
         
         NSString *string3 = @"登录既表明同意";
-    
+        
         NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@和%@",string3,agreementString,privacyPolicyString]];
         [attrString addAttribute:NSForegroundColorAttributeName value:GTColor(@"#0e4b87") range:NSMakeRange(string3.length, agreementString.length)];
         [attrString addAttribute:NSForegroundColorAttributeName value:GTColor(@"#0e4b87") range:NSMakeRange(string3.length + agreementString.length + 1, privacyPolicyString.length)];
@@ -267,6 +323,48 @@ static NSString *privacyPolicyString = @" 隐私政策 ";
         _agreementLabel = label;
     }
     return _agreementLabel;
+}
+#pragma mark - setter
+- (void)setLoginType:(LoginType)loginType
+{
+    _loginType = loginType;
+    if (loginType == LoginTypeSMSCode) {
+        /// 验证码登录
+        self.passwordTextField.text = @"";
+        self.passwordTextField.hidden = YES;
+        self.smsCodeTextField.hidden = NO;
+        [self.modelChangeBtn setTitle:@"用密码登录" forState:UIControlStateNormal];
+    }else{
+        /// 密码登录
+        self.smsCodeTextField.text = @"";
+        self.smsCodeTextField.hidden = YES;
+        self.passwordTextField.hidden = NO;
+        [self.modelChangeBtn setTitle:@"用验证码登录" forState:UIControlStateNormal];
+    }
+}
+#pragma mark - UITextFieldDelegate
+/// 限制只能输入数字
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if ([string isEqualToString:@""]) {
+        return YES;
+    }
+    /// 手机号和验证码输入框只能输入数字
+    if (textField == self.phoneTextField || textField == self.smsCodeTextField) {
+        
+        NSInteger maxLength = textField == self.phoneTextField ? 11 : 6;
+        if (textField.text.length >= maxLength) {
+            return NO;
+        }
+        NSString *validRegEx =@"^[0-9]$";
+        NSPredicate *regExPredicate =[NSPredicate predicateWithFormat:@"SELF MATCHES %@", validRegEx];
+        BOOL myStringMatchesRegEx = [regExPredicate evaluateWithObject:string];
+        if(myStringMatchesRegEx) {
+            return YES;
+        }
+        return NO;
+    }
+    return YES;
 }
 #pragma mark - YBAttributeTapActionDelegate
 - (void)yb_tapAttributeInLabel:(UILabel *)label string:(NSString *)string range:(NSRange)range index:(NSInteger)index
@@ -291,7 +389,21 @@ static NSString *privacyPolicyString = @" 隐私政策 ";
 }
 - (void)sendSMSCodeBtnClick:(UIButton *)sender
 {
-    NSLog(@"发送验证码");
+    if (self.phoneTextField.text.length != 11) {
+        [MBProgressHUD showWindowBlackHudWithTitle:@"请先输入正确手机号" hideAfterDelay:1];
+        return;
+    }
+    self.sendSMSCodeBtn.layer.borderColor = TextColor999.CGColor;
+    self.sendSMSCodeBtn.enabled = NO;
+    
+    __weak typeof(self) weakSelf = self;
+
+    [MKCoutDownTimer timerWithCountdownTime:10 rate:1 executeBlock:^(int second) {
+        [weakSelf.sendSMSCodeBtn setTitle:[NSString stringWithFormat:@"  %ds后重新获取  ",second] forState:UIControlStateDisabled];
+    } endBlock:^{
+        weakSelf.sendSMSCodeBtn.enabled = YES;
+        weakSelf.sendSMSCodeBtn.layer.borderColor = TextColor333.CGColor;
+    }];
 }
 - (void)confromBtnClick:(UIButton *)sender
 {
@@ -299,7 +411,13 @@ static NSString *privacyPolicyString = @" 隐私政策 ";
 }
 - (void)modelChangeBtnClick:(UIButton *)sender
 {
-    NSLog(@"切换");
+    self.loginType = self.loginType == LoginTypeSMSCode ? LoginTypePassword : LoginTypeSMSCode;
+}
+- (void)textFieldDidChange:(UITextField *)sender
+{
+    if (sender != self.phoneTextField) {
+        self.confromBtn.enabled = sender.text.length >= 1 && self.phoneTextField.text.length == 11;
+    }
 }
 
 - (void)dismissWithLoginSuccess:(BOOL)loginSuccess
