@@ -45,7 +45,7 @@
 {
     if (!_loginBtn) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.backgroundColor = GlobalColor;
+        btn.backgroundColor = AccentColor;
         [btn setTitle:@"登陆\\注册" forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont fontWithName:FDFONT_PINGFANGSC_MEDIUM size:15];

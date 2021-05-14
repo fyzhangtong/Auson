@@ -71,7 +71,7 @@
 {
     if (!_progressView) {
         _progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
-        _progressView.progressTintColor = GlobalColor;
+        _progressView.progressTintColor = AccentColor;
         
     }
     return _progressView;
