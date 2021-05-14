@@ -27,8 +27,16 @@
 #define RV(value) RV_WIDTH((value),(375.f))
 /// 按iPhone6 667.f成比例
 #define RH(value) ((value)/(667.f) * GTSCREENH)
+
 /// 状态栏高度
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 130000
+/// 支持iOS13以上
 #define SafeIphoneXStatusHeader [UIApplication sharedApplication].windows.firstObject.windowScene.statusBarManager.statusBarFrame.size.height
+#else
+/// 支持iOS 12以上
+#define SafeIphoneXStatusHeader [[UIApplication sharedApplication] statusBarFrame].size.height
+#endif
+
 /// 导航栏高度
 #define GTNAVIGATIONBARHEIGHT (SafeIphoneXStatusHeader + 44)
 /// tabbar高度
