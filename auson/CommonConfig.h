@@ -54,7 +54,7 @@
 /// ------------------------------------------------颜色------------------------------------------------
 #define GTColor(HexStr)  [UIColor colorWithHexString:HexStr]
 /// 全局色调
-#define AccentColor [UIColor colorNamed:@"AccentColor"]
+#define GlobalColor [UIColor colorNamed:@"GlobalColor"]
 /// 请求图片时的占位颜色
 #define PLACEHODLER_COLOR [UIColor colorNamed:@"PlachhodlerColor"]
 

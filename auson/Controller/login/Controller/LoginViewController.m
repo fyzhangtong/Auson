@@ -82,7 +82,7 @@ static NSString *privacyPolicyString = @" 隐私政策 ";
 
 - (void)makeView
 {
-    [self setRightButtonTitle:@"随便看看" titleColor:AccentColor];
+    [self setRightButtonTitle:@"随便看看" titleColor:GlobalColor];
 }
 #pragma mark - getter
 - (UIStackView *)stackView
@@ -148,7 +148,7 @@ static NSString *privacyPolicyString = @" 隐私政策 ";
 {
     if (!_confromBtn) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.backgroundColor = AccentColor;
+        btn.backgroundColor = GlobalColor;
         [btn setTitle:@"获取验证码" forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont fontWithName:FDFONT_PINGFANGSC_REGULAR size:15];
